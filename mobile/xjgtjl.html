@@ -1,0 +1,92 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+</head>
+<script>
+    $(function () {
+        if(localStorage.lyt_jdbh!=0) {
+            $("#jdbh").val(localStorage.lyt_jdbh);
+            $.ajax({
+                url:"php/get_zwbh.php",
+                data:{jdbh:localStorage.lyt_jdbh},
+                dataType:"json",
+                type:"post",
+                success:function (msg) {
+                    var select=$("<select id='zwbh' name='zwbh' class='form-control'></select>");
+                    var note="<option value=''>请选择</option>";
+                    JSON.parse(msg).each(function (i,item) {
+                           note+="<option value='"+item.zwbh+"'>item.zwbh</option>"
+                    })
+                    select.html(note);
+                    $("#select_for_zw").html(select.toString());
+                }
+            })
+        }
+    })
+</script>
+<body>
+<h1 class="text-center" >农易通<br><small>沟通信息</small></h1>
+<div class=" container">
+    <button class="btn btn-danger  col-xs-4 col-xs-offset-1" onclick="location.href='gtjl.html'">返回</button>
+    <button class="btn btn-success col-xs-4 col-xs-offset-2" type="submit" form="f">确定</button>
+</div><br><br><br>
+<div class="table-responsive container">
+    <table class="table  table-hover ">
+
+        <tr>
+            <th>记录编号</th>
+            <td>
+                <input class="form-control" name="jlbh"  form="f">
+            </td>
+        </tr>
+        <tr>
+            <th>作物编号</th>
+            <td id="select_for_zw">
+                <input class="form-control" name="zwbh" id="zwbh" form="f">
+            </td>
+        </tr>
+        <tr>
+            <th>基地编号</th>
+            <td>
+                <input class="form-control" name="jdbh" id="jdbh" form="f">
+            </td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td>
+                <input type="date" class="form-control" id="date" form="f" name="date">
+            </td>
+        </tr>
+        <tr>
+            <th>图片上传</th>
+            <td>
+                <input type="file" form="f" name="file" class="form-control" >
+            </td>
+
+        </tr>
+        <tr>
+            <th>详细内容</th>
+            <td>
+                <textarea class="form-control"  style="resize:vertical" name="xxxx"></textarea>
+            </td>
+        </tr>
+    </table>
+    <form method="post" enctype="multipart/form-data" action="php/insert_gtjl.php" id="f" target="id_iframe" >
+
+    </form>
+    <iframe name="id_iframe" width="100%" height="100px" frameborder="0">
+
+    </iframe>
+</div>
+
+<div class="yejiao text-center" >
+</div>
+</div>
+</body>
+</html>

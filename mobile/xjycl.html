@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+
+    <script src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+    <script>
+        $(function () {
+            if(localStorage.lyt_zwbh!=0){
+                $("#zwbh").val(localStorage.lyt_zwbh)
+            }
+        })
+    </script>
+</head>
+<body>
+<h1 class="text-center" >农易通<br><small>预产量</small></h1>
+<div class="text-center">
+    <button class="btn btn-danger  col-xs-4 col-xs-offset-1" onclick="window.location.href='ycl.html'">返回</button>
+    <button class="btn btn-success col-xs-4 col-xs-offset-2" onclick="insert_for_ycl(this)">确定</button>
+</div><br><br><br>
+
+
+<div class="table-responsive container">
+        <table class="table  table-hover ">
+            <tr>
+                <th>作物编号</th>
+                <td>
+                    <input type="number" id="zwbh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>批次</th>
+                <td>
+                    <input type="number" id="pici" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>预产期</th>
+                <td>
+                    <input type="date" id="date" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>季度</th>
+                <td>
+                    <input type="text" id="season" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>预产量</th>
+                <td>
+                    <input class="form-control" id="amount" type="text"  class="form-control">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <br><br><br>
+
+    <div class="yejiao text-center" >
+    </div>
+</div>
+</body>
+
+</html>

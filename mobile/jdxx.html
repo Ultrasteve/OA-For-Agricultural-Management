@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+
+
+</head>
+<body>
+     <h1 class="text-center" >农易通<br><small>农户基地详细信息</small></h1>
+     <button class="btn btn-danger  col-xs-8 col-xs-offset-2" onclick="localStorage.lyt_jdbh=$('#id_of_jd').html();location.href='xjgtjl.html'">新建沟通管理</button>
+     <form onsubmit="return insert_for_xjjdxx($('button[type=submit]'),'update')" id="f"></form>
+     <table class="table table-responsive table-striped container" id="jdxx_table">
+         <tr>
+             <th class="col-xs-4 col-xs-offset-1">农户编号</th>
+             <td id='nhbh' class="col-xs-6"></td>
+         </tr>
+         <tr>
+             <th >基地ID</th>
+             <td id="id_of_jd">
+             </td>
+         </tr>
+         <tr>
+             <th>基地地址</th><td><input type='text' class='form-control' id='address' form="f" required></td>
+         </tr>
+         <tr>
+             <th >土地PH</th>
+             <td>
+                 <input type='number' class='form-control' id='ph' form="f" required>
+             </td>
+         </tr>
+         <tr>
+             <th>面积</th><td><input type='text' class='form-control'  id='area' form="f" required></td>
+         </tr>
+         <tr>
+             <th>土地评价</th>
+             <td>
+                 <select class='form-control' id='rate' form="f" required>
+                     <option value='优'>优</option>
+                     <option value='良'>良</option>
+                     <option value='中'>中</option>
+                     <option value='差'>差</option>
+                 </select>
+             </td>
+         </tr>
+         <tr>
+             <th>租赁到期日</th><td><input type='date' class='form-control' id='date' form="f" required></td>
+         </tr>
+         <tr>
+             <th>是否有合约</th>
+             <td>
+                 <select class='form-control' id='agreement' form="f" required>
+                     <option value='1'>有</option>
+                     <option value='0'>无</option>
+                 </select>
+             </td>
+         </tr>
+         <tr>
+             <th>周边环境</th><td ><input id='surround' type='text'   class='form-control' form="f" required></td>
+         </tr>
+         <tr>
+             <th>地形</th>
+             <td>
+                 <select class='form-control' id='landform' required form="f">
+                     <option value='0'>丘陵</option>
+                     <option value='1'>坡地</option>
+                 </select>
+             </td>
+         </tr>
+         <tr>
+             <th>曾种植情况</th><td><select  id='p_crop' class="form-control" form="f" required></select></td>
+         </tr>
+         <tr>
+             <th>现种植情况</th><td><select  id='n_crop' class="form-control" form="f" required></select></td>
+         </tr>
+         <tr>
+             <th>附近作物</th><td><select  id='nearby' class="form-control" form="f" required></select></td>
+         </tr>
+         <tr>
+             <th>水源情况</th><td><input type='text' class='form-control' id='water_source' form="f" required></td>
+         </tr>
+         <tr>
+             <th>农具机状况</th><td><textarea class='form-control' style='resize: vertical' id='tuolaji' form="f" required></textarea></td>
+         </tr>
+     </table>
+
+
+
+     </div>
+     <div class="yejiao text-center" id="yejiao">
+     </div>
+     <div class=" container">
+         <button class="btn btn-danger  col-xs-4 col-xs-offset-1" onclick="location.href='main_nhxx.html'">返回首页</button>
+         <button class="btn btn-success col-xs-4 col-xs-offset-2" type="submit" form="f">确认修改</button>
+     </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        fillHTML_for_jdxx(localStorage.lyt_jdxx_id);
+
+        if(localStorage.lyt_jdxx_id==0)
+             yejiao(localStorage.id,'jdxx_num_check');
+    });
+</script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+<body>
+<h1 class="text-center" >农易通<br><small>田间管理信息</small></h1>
+<div class=" container">
+    <button class="btn btn-success col-xs-4 col-xs-offset-2" onclick="location.href='main_nhxx.html'">返回</button>
+    <button class="btn btn-danger  col-xs-4 col-xs-offset-1" onclick="localStorage.lyt_zwbh=0;location.href='xjtjglxx.html'">新建</button>
+</div><br><br><br>
+
+<div class="table-responsive container">
+    <fieldset disabled="disabled">
+        <table class="table  table-hover ">
+            <tr>
+                <th>作物编号</th>
+                <td>
+                    <input type="number" id="Z_ID" NAME="Z_ID" class="form-control" >
+                </td>
+            </tr>
+            <tr>
+                <th>记录编号</th>
+                <td>
+                    <input type="number" id="ID" name="ID" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>天气</th>
+                <td>
+                    <input type="text" id="WEATHER" name="WEATHER" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>活动内容</th>
+                <td>
+                    <input type="text" id="ACT" name="ACT" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>投入药品</th>
+                <td>
+                    <input type="text" id="U_PRODUCT" name="U_PRODUCT" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>数量</th>
+                <td>
+                    <input type="number" id="AMOUNT" name="AMOUNT" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>使用方法</th>
+                <td>
+                    <input type="text" id="U_METHOD" name="U_METHOD" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>使用设备</th>
+                <td>
+                    <input type="text" id="U_MACHINE" name="U_MACHINE" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <th>生产情况</th>
+                <td>
+                    <select id="P_CONDITION" name="P_CONDITION" class="form-control">
+                        <option value="优">优</option>
+                        <option value="良">良</option>
+                        <option value="中">中</option>
+                        <option value="差">差</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>图片</th>
+                <td>
+                    <img src="" alt="" id="PHOTO"  height="200px" width="150px">
+                </td>
+            </tr>
+            <tr>
+                <th>管理要点</th>
+                <td>
+                    <input id="M_POINT" class="form-control"  type="text">
+                </td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td>
+                    <textarea id="NOTE" name="NOTE" class="form-control" style="resize: vertical"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>预测上市时间</th>
+                <td>
+                    <input id="P_DATE" name="P_DATE" class="form-control" type="date">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div class="yejiao text-center" id="yejiao" >
+</div>
+</div>
+</body>
+<script>
+    fillHTML_for_tjglxx('0');
+    yejiao('','tjglxx_num_check');
+
+</script>
+</html>

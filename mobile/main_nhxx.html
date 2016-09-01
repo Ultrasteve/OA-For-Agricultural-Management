@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+    <script>
+        if (typeof (localStorage.lyt_username)=='undefined'  ||  typeof (localStorage.lyt_password)=='undefined' )
+        {
+            console.log(typeof (localStorage.lyt_username)+","+typeof (localStorage.lyt_password))
+            alert("请到登录界面进行登录");
+            location.href='dengl.html';
+        }
+        else
+        {
+            //对历史记录进行填充//
+            console.log(typeof (localStorage.lyt_username));
+        }
+
+        localStorage.types_of_plants='<option value="">请选择</option> ';
+        $.ajax({
+            url:'php/yujiazai_of_pinzhong.php',
+            dataType:'json',
+            success:function (obj) {
+                var object;
+               try {
+                  object=   JSON.parse(obj)
+                }
+                catch (e){
+                    console.log(e);
+                    object=obj
+                }
+                $.each(object,function (i,item) {
+                    console.log(item['id']+":"+item.name)
+                    localStorage.types_of_plants+="<option value='"+item.id+"'>"+item.id+":  "+item.name+"</option>"
+                })
+                console.log(localStorage.types_of_plants)
+            },
+            error:function () {
+                console.log("yujiazai.php  lost")
+            }
+        })
+
+
+
+    </script>
+</head>
+<body>
+        <h1 class="text-center" >农易通</h1>
+           <!-- <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <tr class="active"><td>个人信息</td></tr>
+                    <tr class="active"><td>农户信息</td></tr>
+                    <tr class="active"><td>种植基地信息</td></tr>
+                    <tr class="active"><td>作物信息</td></tr>
+                    <tr class="active"><td>田间管理信息</td></tr>
+                    <tr class="active"><td>沟通记录</td></tr>
+                    <tr class="active"><td>产量信息</td></tr>
+                    <tr class="active"><td>台账查看</td></tr>
+                </table>
+
+            </div>-->
+
+            <ul class="nav nav-pills">
+            <!--    <li><a id="grxx">种植基地信息</a></li> -->
+                <li class="active"><a id="nhxx"> 农户信息</a></li>
+                <li class="dropdown">
+                    <a id="zwxx"  data-toggle="dropdown">作物信息 </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="jixx_btn2">种植作物</a></li>
+                        <li><a onclick="tjglxx_num_check()">田间管理信息</a></li>
+                        <li><a href="gtjl.html">沟通信息</a></li>
+                        <li><a href="ycl.html">作物预产表</a></li>
+                    </ul>
+                    <div class="modal" id="mymodal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">请输入农户ID</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='请输入农户ID' id="ID">
+                                        <i change="0" class="glyphicon glyphicon-check input-group-addon" onclick="historymodel(this,'zw')"></i>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" onclick="localStorage.id=$('#ID').val();xjjdxx(this,'xjzzzw')">新建</button>
+                                    <button type="button" class="btn btn-primary" onclick="localStorage.id=$('#ID').val();zzzw_num_check(this);">查询</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                </li>
+
+                <li><a id="tzck" onclick="location.href='tzck.html'">台账查看 </a></li>
+                <li><a id="jdxx" class="jixx_btn">基地信息 </a></li>
+                <!--                     modal                   -->
+
+            </ul>
+        <div class="modal" id="mymodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">请输入农户ID</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input type='text' class='form-control' placeholder='请输入农户ID' id="nh_ID">
+                            <i change="0" class="glyphicon glyphicon-check input-group-addon" onclick="historymodel(this,'jd')"></i>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="localStorage.id=$('#nh_ID').val();xjjdxx(this,'xjjdxx')">新建</button>
+                        <button type="button" class="btn btn-primary" onclick="localStorage.id=$('#nh_ID').val();jdxx_num_check(this);">查询</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <br><br>
+
+        <button class="btn btn-warning btn-lg col-xs-10 col-xs-offset-1" onclick="location.href='xjnhxx.html'">新建农户信息</button>
+        <br><br><br><br>
+        <button class="btn btn-success btn-lg col-xs-10 col-xs-offset-1 " data-toggle="dropdown" onclick="slided(this)" dada="0">修改/查看农户信息</button>
+
+
+
+        <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <ul class=" list-inline text-center">
+                <li><a href="##">联系方式</a></li>
+                <li><a href="shezhi.html">设置</a></li>
+                <li><a href="##">版本信息</a></li>
+            </ul>
+        </div>
+
+</body>
+<script>
+    $(function(){
+        $(".jixx_btn").click(function(){
+            $("#mymodal").modal("toggle");
+
+        });
+        $(".jixx_btn2").click(function(){
+            $("#mymodal2").modal("toggle");
+
+        });
+    });
+</script>
+</html>

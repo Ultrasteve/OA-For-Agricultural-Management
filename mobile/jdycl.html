@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+
+    <script src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+</head>
+<body>
+<h1 class="text-center" >农易通<br><small>季度收成量</small></h1>
+<div class="fadeout">
+    <div class='input-group' style='width: 50%;margin-right: auto;margin-left: auto'>
+        <input type='text' class='form-control' placeholder="请输入农户名字" id="inputfamername">
+        <span class='input-group-addon'><i class='glyphicon glyphicon-search ' onclick='search3(this)'></i></span>
+
+    </div>
+    <div class="text-center">
+        <br>
+        <br>
+        <button class="btn btn-success btn-lg" onclick="window.location.href='main_nhxx.html'">返回上层</button>
+    </div>
+</div>
+<div style="display: none" class="fadein">
+    <div class="text-center">
+        <button class="btn btn-danger" onclick="window.location.href='gtjl.html'">新建对话</button>
+        <button class="btn btn-success" onclick="window.location.href='gtjl.html'">返回上层</button>
+    </div>
+    <div class="table-responsive container">
+        <table class="table  table-hover ">
+
+            <tr>
+                <th>基地号</th>
+                <td>123</td>
+            </tr>
+            <tr>
+                <th>农户姓名</th>
+                <td>李四</td>
+            </tr>
+            <tr>
+                <th>种植品种</th>
+                <td>
+                    <select class="form-control">
+                        <option>001 苹果</option>
+                        <option>002 雪梨</option>
+                        <option>003 萝卜</option>
+                        <option>004 番茄</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>种植品类</th>
+                <td>
+                    <select class="form-control">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>收成日期</th>
+                <td>
+                    <div class="input-append date" id="datetimepicker" data-date="01-01-2016" data-date-format="dd-mm-yyyy">
+                        <input class="form-control"  type="text" value="01-01-2016">
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>季度</th>
+                <td>
+                    <select class="form-control">
+                        <option>春季</option>
+                        <option>夏季</option>
+                        <option>秋季</option>
+                        <option>冬季</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>产量</th>
+                <td>
+                    <input class="form-control" type="text" value="1m">
+                </td>
+            </tr>
+        </table>
+        <div class=" text-center">
+            <i class="glyphicon glyphicon-remove"></i>
+        </div>
+    <div class="yejiao text-center" >
+
+        <ul class="list-inline">
+            <li><a href="#">Prev</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">Next</a></li>
+            <li>
+                <a >
+                    <div class="input-group" style="width: 40%;margin-left: auto;margin-right: auto">
+                        <input type="text" class="form-control"><span class='input-group-addon'><i class='glyphicon glyphicon-circle-arrow-right'></i></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</div>
+</body>
+<script>
+    $(function () {
+        console.log(localStorage.name)
+        $("#inputfamername").val(localStorage.name);
+        $('.date').datetimepicker({
+            minView:"month",
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+    })
+</script>
+</html>

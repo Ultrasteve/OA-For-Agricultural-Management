@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+
+</head>
+<body>
+<h1 class="text-center" >农易通<br><small>种植作物</small></h1>
+    <div class="table-responsive container">
+        <table class="table  table-hover ">
+
+            <tr>
+                <th>基地号</th>
+                <td>
+                    <select class="form-control" id="id_of_jidi"></select>
+                </td>
+            </tr>
+            <tr>
+                <th>农户ID</th>
+                <td id="name"></td>
+            </tr>
+            <tr>
+                <th>种植面积</th>
+                <td ><input id="area" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>种植品种</th>
+                <td>
+                    <select class="form-control" id="types_of_plant">
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>作物品类</th>
+                <td>
+                    <select class="form-control" id="kinds_of_plant">
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>种植时间</th>
+                <td><input class="form-control"  type="text" id="time"></td>
+            </tr>
+            <tr>
+                <th>株距</th>
+                <td>
+                    <input class="form-control" type="text" id="row_spacing">
+                </td>
+            </tr>
+            <tr>
+                <th>行距</th>
+                <td>
+                    <input class="form-control" type="text" id="column_spacing">
+                </td>
+            </tr>
+            <tr>
+                <th>种植方式</th>
+                <td>
+                    <select class="form-control" id="plant_way">
+                        <option value="滴灌">滴灌</option>
+                        <option value="喷灌">喷灌</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>种源</th>
+                <td>
+                    <input type="text" class="form-control" id="seed_from">
+                </td>
+            </tr>
+            <tr>
+                <th>上茬产量</th>
+                <td>
+                    <input type="text" class="form-control" id="production_last_season">
+                </td>
+            </tr>
+            <tr>
+                <th>种植评估</th>
+                <td>
+                            <textarea class="form-control" rows="10" style="resize:vertical" id="evaluate">
+                            </textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+   <div class=" container">
+      <button class="btn btn-danger  col-xs-4 col-xs-offset-1" onclick="location.href='main_nhxx.html'">返回</button>
+      <button class="btn btn-success col-xs-4 col-xs-offset-2" onclick="insert_for_xjzzzw(this,'insert')">确定</button>
+   </div>
+</body>
+<script>
+    $(function () {
+        $("#types_of_plant").html(localStorage.types_of_plants);
+        $("#id_of_jidi").change(function () {
+            var msg2=JSON.parse(localStorage.jiazai_id_of_jidi);
+            console.log(msg2)
+            $.each(msg2,function (i,item) {
+                $.each(item,function (key,val) {
+                    if(key=='id_of_jidi')
+                        if ($("#id_of_jidi").val()==val)
+                            $("#types_of_plant").val(item.types_of_plant);
+                        else
+                            return false;
+                })
+            })
+            $("#types_of_plant").change();
+        })
+        $("#types_of_plant").change(function () {
+            var p_id=$(this).val();
+            $.ajax({
+                url:'php/yujiazai_of_pinlei.php',
+                data:{p_id:p_id},
+                dataType:'json',
+                type:'post',
+                success:function (obj) {
+                    var object;
+                    var note='<option value="">请选择</option>'
+                    try {
+                        object=   JSON.parse(obj)
+                    }
+                    catch (e){
+                        console.log(e);
+                        object=obj
+                    }
+                    $.each(object,function (i,item) {
+                        console.log(item['id']+":"+item.name)
+                        note+="<option value='"+item.id+"'>"+item.id+":  "+item.name+"</option>"
+                    })
+                    $("#kinds_of_plant").html(note);
+                },
+                error:function () {
+                    console.log("yujiazai_of_pinlei.php  lost")
+                }
+            })
+        })
+        $("#name").html(localStorage.id);
+
+        jiazai_id_of_jidi();
+    })
+
+</script>
+</html>

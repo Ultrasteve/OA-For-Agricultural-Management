@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
+    <title>农易通登录</title>
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+    <script>
+        if (!(typeof (localStorage.lyt_username)=="undefined") && !(typeof (localStorage.lyt_password)=="undefined") )
+        {
+
+            location.href="main_nhxx.html";
+        }
+           console.log(typeof (localStorage.lyt_username)+","+typeof (localStorage.lyt_password))
+    </script>
+</head>
+<body>
+   <div style="position: absolute;top: 100px;width: 70%;text-align: center;margin-left: 15%" >
+
+       <table class="table table-hover text-center" >
+           <caption style="text-align: center"> <h1 style="color: #2aabd2;font-size: 30px;font-weight: 900">农易通登录</h1></caption>
+           <tr>
+               <td>  <input type="number" placeholder="请输入账号" class="form-control" id="username"></td>
+           </tr>
+           <tr>
+               <td><input type="password" placeholder="请输入密码" class="form-control" id="password"></td>
+           </tr>
+       </table>
+
+       <br><br>
+       <button class="col-xs-8 col-xs-offset-2 btn btn-lg btn-warning" id="denglu">登录</button>
+   </div>
+   <div style="position: absolute;top: 300px;width: 60%;margin-left: 20%" class="text-center">
+       <p id="tips" class="text-center"></p>
+   </div>
+</body>
+</html>
